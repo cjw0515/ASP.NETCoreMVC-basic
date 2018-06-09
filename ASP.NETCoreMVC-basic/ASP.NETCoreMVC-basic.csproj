@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="VIews\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

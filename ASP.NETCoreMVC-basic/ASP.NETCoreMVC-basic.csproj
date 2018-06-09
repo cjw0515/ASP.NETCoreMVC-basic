@@ -5,6 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controller\**" />
+    <Compile Remove="Model\**" />
+    <Content Remove="Controller\**" />
+    <Content Remove="Model\**" />
+    <EmbeddedResource Remove="Controller\**" />
+    <EmbeddedResource Remove="Model\**" />
+    <None Remove="Controller\**" />
+    <None Remove="Model\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="VIews\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

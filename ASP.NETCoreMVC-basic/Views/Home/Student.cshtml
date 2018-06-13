@@ -1,33 +1,57 @@
 ﻿@using ASP.NETCoreMVC_basic.Models
-@model Student
+@using ASP.NETCoreMVCbasic.ViewModels
+
+@model StudentTeacherViewModel
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-
 <h3>Add New Student</h3><!--asp.net에서는 post메서드로 크로스사이트 스크립팅 이슈를 막기 위헤 form에 input hidden 속성으로 토큰을 저절로 생성하게 한다.-->
-<form class="form form-horizontal" asp-antiforgery="false" method="POST"><!--asp-antiforgery 설정으로 토큰 생성이 안된다.-->
+<form class="form form-horizontal" method="POST">
+    <!--asp-antiforgery 설정으로 토큰 생성이 안된다.-->
     <div class="form-group">
-        <img src="http://webimage.10x10.co.kr/eventIMG/2018/86740/img_slide_3.jpg"/>
+        <img src="http://webimage.10x10.co.kr/eventIMG/2018/86740/img_slide_3.jpg" />
     </div>
     <div class="form-group">
         <div class="col-md-3">
             <label>name:</label>
-            <input type="text" class="form-control" asp-for="Name"/>
-            <span asp-validation-for="Name"></span><!--태그헬퍼 : 개발자도구에서 자동 생성된 태그의 속성값을 확인 가능-->
+            <input type="text" class="form-control" asp-for="@Model.Student.Name" />
+            <span asp-validation-for="@Model.Student.Name"></span><!--태그헬퍼 : 개발자도구에서 자동 생성된 태그의 속성값을 확인 가능-->
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-3">
             <label>Age:</label>
-            <input type="text" class="form-control" asp-for="Age" />
-            <span asp-validation-for="Age"></span>
+            <input type="text" class="form-control" asp-for="@Model.Student.Age" />
+            <span asp-validation-for="@Model.Student.Age"></span>
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-3">
             <label>contry:</label>
-            <input type="text" class="form-control" asp-for="Country" />
-            <span asp-validation-for="Country"></span>
+            <input type="text" class="form-control" asp-for="@Model.Student.Country" />
+            <span asp-validation-for="@Model.Student.Country"></span>
         </div>
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
 </form>
+
+<hr />
+
+<h3>our Teacher</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Class</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var teacher in Model.Teachers)
+        {
+            <tr>
+                <td>@teacher.Name</td>
+                <td>@teacher.Class</td>
+            </tr>
+        }
+    </tbody>
+    
+</table>

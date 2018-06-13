@@ -13,10 +13,12 @@
     <EmbeddedResource Remove="Model\**" />
     <None Remove="Controller\**" />
     <None Remove="Model\**" />
+    <Compile Remove="ViewModels\StudentTeacherViewModels.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,8 +2,11 @@
 @using ASP.NETCoreMVCbasic.ViewModels
 
 @model StudentTeacherViewModel
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<!--타이틀은 여기서 설정-->
+@{ 
+    ViewBag.Title = "Student";
+    Layout = "../Shared/_Layout.cshtml";
+}
 <h3>Add New Student</h3><!--asp.net에서는 post메서드로 크로스사이트 스크립팅 이슈를 막기 위헤 form에 input hidden 속성으로 토큰을 저절로 생성하게 한다.-->
 <form class="form form-horizontal" method="POST">
     <!--asp-antiforgery 설정으로 토큰 생성이 안된다.-->

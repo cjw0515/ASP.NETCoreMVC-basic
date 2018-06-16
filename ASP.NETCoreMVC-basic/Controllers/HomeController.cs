@@ -13,6 +13,12 @@ namespace ASP.NETCoreMVC_basic.wwwroot.Controllers
 {
     public class HomeController : Controller
     {
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+
         // GET: /<controller>/
         public IActionResult Student()
         {

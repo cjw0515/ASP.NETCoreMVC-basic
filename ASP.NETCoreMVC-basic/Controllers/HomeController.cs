@@ -17,7 +17,8 @@ namespace ASP.NETCoreMVC_basic.wwwroot.Controllers
         public IActionResult Student()
         {
             List<Teacher> teachers = new List<Teacher>(){
-                new Teacher() { Name = "세종대왕", Class = "한글"}
+                new Teacher() { Name = "세종대왕", Class = "한글"},
+                new Teacher() { Name = "이순신", Class = "병법"}
             };
 
             var viewModel = new StudentTeacherViewModel()

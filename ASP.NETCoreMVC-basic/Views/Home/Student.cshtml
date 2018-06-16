@@ -1,11 +1,8 @@
 ﻿@using ASP.NETCoreMVC_basic.Models
-@using ASP.NETCoreMVCbasic.ViewModels
-
 @model StudentTeacherViewModel
 <!--타이틀은 여기서 설정-->
-@{ 
+@{
     ViewBag.Title = "Student";
-    Layout = "../Shared/_Layout.cshtml";
 }
 <h3>Add New Student</h3><!--asp.net에서는 post메서드로 크로스사이트 스크립팅 이슈를 막기 위헤 form에 input hidden 속성으로 토큰을 저절로 생성하게 한다.-->
 <form class="form form-horizontal" method="POST">
@@ -36,25 +33,5 @@
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
 </form>
-
 <hr />
-
-<h3>our Teacher</h3>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Class</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var teacher in Model.Teachers)
-        {
-            <tr>
-                <td>@teacher.Name</td>
-                <td>@teacher.Class</td>
-            </tr>
-        }
-    </tbody>
-    
-</table>
+@await Html.PartialAsync("_TeacherTable", Model);

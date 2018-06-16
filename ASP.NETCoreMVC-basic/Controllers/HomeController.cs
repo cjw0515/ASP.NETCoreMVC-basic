@@ -4,8 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ASP.NETCoreMVC_basic.Models;
-using ASP.NETCoreMVCbasic.Models;
-using ASP.NETCoreMVCbasic.ViewModels;
+using ASP.NETCoreMVC_basic.ViewModels;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,7 +14,18 @@ namespace ASP.NETCoreMVC_basic.wwwroot.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            List<Teacher> teachers = new List<Teacher>(){
+                new Teacher() { Name = "세종대왕", Class = "한글"},
+                new Teacher() { Name = "이순신", Class = "병법"}
+            };
+
+            var viewModel = new StudentTeacherViewModel()
+            {
+                Student = new Student(),
+                Teachers = teachers
+            };
+
+            return View(viewModel);
         }
 
 

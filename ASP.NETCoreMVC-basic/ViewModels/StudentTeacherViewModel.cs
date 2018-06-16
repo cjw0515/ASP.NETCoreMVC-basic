@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using ASP.NETCoreMVC_basic.Models;
-using ASP.NETCoreMVCbasic.Models;
 
-namespace ASP.NETCoreMVCbasic.ViewModels
+namespace ASP.NETCoreMVC_basic.ViewModels
 {
     public class StudentTeacherViewModel
     {

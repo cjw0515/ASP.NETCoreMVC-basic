@@ -1,5 +1,5 @@
 ﻿using System;
-namespace ASP.NETCoreMVCbasic.Models
+namespace ASP.NETCoreMVC_basic.Models
 {
     public class Teacher
     {

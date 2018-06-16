@@ -14,6 +14,7 @@ namespace ASP.NETCoreMVC_basic.Models
         //prop + tab + tab
         //[BindNever] 
         //name을 바인드 하지 않음.
+        public int Id { get; set; } //db생성 시 꼭 필요함
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }

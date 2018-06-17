@@ -13,16 +13,19 @@ namespace ASP.NETCoreMVC_basic.wwwroot.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ITeacherRepository _repository;
+        private readonly ITeacherRepository _teacherRepository;
+        private readonly IStudentRepository _studentRepository;
 
-        public HomeController(ITeacherRepository repository)
+        public HomeController(ITeacherRepository teacherRepository,
+                                     IStudentRepository studentRepository)
         {
-            _repository = repository;
+            _teacherRepository = teacherRepository;
+            _studentRepository = studentRepository;
         }
 
         public IActionResult Index()
         {
-            var teachers = _repository.GetAllTeachers();
+            var teachers = _teacherRepository.GetAllTeachers();
 
             var viewModel = new StudentTeacherViewModel()
             {
@@ -37,15 +40,12 @@ namespace ASP.NETCoreMVC_basic.wwwroot.Controllers
         // GET: /<controller>/
         public IActionResult Student()
         {
-            List<Teacher> teachers = new List<Teacher>(){
-                new Teacher() { Name = "세종대왕", Class = "한글"},
-                new Teacher() { Name = "이순신", Class = "병법"}
-            };
+            var students = _studentRepository.GetAllStudents();
 
             var viewModel = new StudentTeacherViewModel()
             {
                 Student = new Student(),
-                Teachers = teachers
+                Students = students
             };
             return View(viewModel);
         }
@@ -66,12 +66,67 @@ namespace ASP.NETCoreMVC_basic.wwwroot.Controllers
             if (ModelState.IsValid)
             {
                 //model 데이터 저장 로직
+                _studentRepository.AddStudent(model.Student);
+                _studentRepository.Save();
+
+                ModelState.Clear();
             }
             else
             {
                 //에러 로직
             }
-            return View();
+
+            var students = _studentRepository.GetAllStudents();
+            var viewModel = new StudentTeacherViewModel()
+            {
+                Student = new Student(),
+                Students = students
+            };
+
+            return View(viewModel);
         }
+
+        public IActionResult Detail(int id)
+        {
+            var result = _studentRepository.GetStudent(id);
+
+            return View(result);
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var result = _studentRepository.GetStudent(id);
+
+            return View(result);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Student student)
+        {
+            //유효성 검사 
+            if (ModelState.IsValid)
+            {
+                //model 데이터 저장 로직
+                _studentRepository.Edit(student);
+                _studentRepository.Save();
+
+                return RedirectToAction("Student");
+            }
+            return View(student);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var result = _studentRepository.GetStudent(id);
+            
+            if(result != null)
+            {
+                _studentRepository.Delete(result);
+                _studentRepository.Save();
+            }
+
+            return RedirectToAction("Student");
+        }
+
     }
 }

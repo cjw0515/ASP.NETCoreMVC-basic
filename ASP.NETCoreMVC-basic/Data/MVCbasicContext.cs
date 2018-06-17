@@ -15,3 +15,4 @@ namespace ASP.NETCoreMVC_basic.Data
         public DbSet<Teacher> Teachers { get; set; }
     }
 }
+ 

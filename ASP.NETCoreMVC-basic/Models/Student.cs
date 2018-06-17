@@ -13,7 +13,7 @@ namespace ASP.NETCoreMVC_basic.Models
         //자바와는 달리 이런식으로 해주면 자동으로 게터세터가 만들어진다.
         //prop + tab + tab
         //[BindNever] 
-        //name을 바인드 하지 않음.
+        //name을 바인드 하지 않음.    
         public int Id { get; set; } //db생성 시 꼭 필요함
         [Required]
         [MaxLength(50)]

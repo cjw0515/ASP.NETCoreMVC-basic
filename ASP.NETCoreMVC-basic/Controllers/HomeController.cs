@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ASP.NETCoreMVC_basic.Models;
 using ASP.NETCoreMVC_basic.ViewModels;
+using ASP.NETCoreMVCbasic.Data.Repositories;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,12 +13,16 @@ namespace ASP.NETCoreMVC_basic.wwwroot.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ITeacherRepository _repository;
+
+        public HomeController(ITeacherRepository repository)
+        {
+            _repository = repository;
+        }
+
         public IActionResult Index()
         {
-            List<Teacher> teachers = new List<Teacher>(){
-                new Teacher() { Name = "세종대왕", Class = "한글"},
-                new Teacher() { Name = "이순신", Class = "병법"}
-            };
+            var teachers = _repository.GetAllTeachers();
 
             var viewModel = new StudentTeacherViewModel()
             {
